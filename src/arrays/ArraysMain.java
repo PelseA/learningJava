@@ -55,15 +55,15 @@ public class ArraysMain {
             System.out.println("Среднее значение (посередине массива) " + randomArr[medium]);
         }
         int summa = 0;
-        for (int i: randomArr) {
-            summa = summa + randomArr[i];
+        for (int elem: randomArr) {
+            summa = summa + elem;
         }
         medium = summa / 2;
         int flag = 0;
-        for (int i: randomArr) {
-            if(randomArr[i] == medium) {
+        for (int elem: randomArr) {
+            if(elem == medium) {
                 flag = 1;
-                System.out.println("Среднее арифметическое значение в массиве " + randomArr[i]);
+                System.out.println("Среднее арифметическое значение в массиве " + elem);
             }
         }
         if (flag == 0) {
@@ -103,18 +103,18 @@ public class ArraysMain {
         // чисел из отрезка [-99;99]. Вывести массив в консоль. После на отдельной строке
         // вывести в консоль значение максимального элемента этого массива.
         int[][] array = new int[5][8];
+        int random, currentMax = 0;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
-                array[i][j] = (int) (Math.random() * (99*2+1)) - 99;
+                random = (int) (Math.random() * (99*2+1)) - 99;
+                array[i][j] = random;
+                if(random > currentMax) {
+                    currentMax = random;
+                }
             }
         }
         System.out.println(Arrays.deepToString(array));
-        int[] maxValues = new int[5];
-        for (int i = 0; i < array.length; i++) {
-            Arrays.sort(array[i]);
-            maxValues[i] = array[i][7];
-        }
-        Arrays.sort(maxValues);
-        System.out.println("Максимальное значение двумерного массива " + maxValues[4]);
+        System.out.println("Максимальное значение двумерного массива " + currentMax);
+
     }
 }
