@@ -93,9 +93,8 @@ public class ArraysMain {
         System.out.println("Случайный массив " + Arrays.toString(arr1));
         int[] newArr = new int[count];
         for (int i = 0, j = 0; i < arr1.length && j < newArr.length; i++, j++) {
-            if(arr1[i] %2 == 0) {
-                newArr[j] = arr1[i];
-            }
+            if (arr1[i] %2 != 0) j = j - 1;
+            else newArr[j] = arr1[i];
         }
         System.out.println("Массив четных чисел " + Arrays.toString(newArr));
 
@@ -103,7 +102,7 @@ public class ArraysMain {
         // чисел из отрезка [-99;99]. Вывести массив в консоль. После на отдельной строке
         // вывести в консоль значение максимального элемента этого массива.
         int[][] array = new int[5][8];
-        int random, currentMax = 0;
+        int random, currentMax = -99;
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
                 random = (int) (Math.random() * (99*2+1)) - 99;
