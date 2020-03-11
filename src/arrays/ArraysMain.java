@@ -34,7 +34,7 @@ public class ArraysMain {
                     m = arr[j];
                     System.out.println(string + n + " и " + m);
                 }
-                if(arr[i] + arr[j] > 7 || arr[i] == 7) break;
+                if(arr[i] + arr[j] > sum || arr[i] == sum) break;
             }
         }
 
