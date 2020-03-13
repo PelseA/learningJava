@@ -79,7 +79,7 @@ public class ArraysMain {
         // элементов первого массива, если они там есть, и вывести его в консоль
         System.out.println("Введите целое число больше 3");
         n = scanner.nextInt();
-        if (n <= 3) {
+        while (n <= 3) {
             System.out.println("Введите целое число БОЛЬШЕ 3");
             n = scanner.nextInt();
         }
