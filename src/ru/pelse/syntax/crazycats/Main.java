@@ -24,7 +24,8 @@ public class Main {
 
         Cat cat5 = new Cat(address, 7, "grey");
 
-        //cat5.fight(cat4);
-        cat2.fight(cat3);
+        cat5.fight(cat4);
+        //cat2.fight(cat3);
+        cat3.fight(cat3);
     }
 }
