@@ -7,9 +7,9 @@ public class Main {
 
         Cat cat2 = new Cat(100, 9, 6); // health, age, weight(double)
         cat2.setName("Мурзик");
-        cat2.setAge(7);
+        cat2.setAge(7); //сработает валидатор "тип конструктора"
 
-        Cat cat3 = new Cat(7, 65); // strength, age
+        Cat cat3 = new Cat(7, 65); // strength, age //сработает валидатор для age
         cat3.setWeight(6);
         cat3.setName("Рыжик");
         cat3.setColor("рыжий");
