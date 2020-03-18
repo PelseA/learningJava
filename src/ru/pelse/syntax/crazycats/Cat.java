@@ -114,18 +114,18 @@ public class Cat {
     }
 
     public void fight(Cat anotherCat) {
-        System.out.println(this);
-        System.out.println(anotherCat);
+        System.out.println("В правом углу ринга " + this);
+        System.out.println("В левом углу ринга "  + anotherCat);
         while(this.health > 5 && anotherCat.health > 5) {
             this.health = this.health - anotherCat.strength;
             anotherCat.health = anotherCat.health - this.strength;
             if(this.health <= 5 && this.health < anotherCat.health) {
-                System.out.println("Кот " + this.name + " не может продолжать бой");
-                System.out.println("Победил " + anotherCat.name);
+                System.out.println("Кот " + this.name + " не может продолжать бой. Его здоровье " + this.health);
+                System.out.println("Победил " + anotherCat.name + " остаток здоровья " + anotherCat.health);
             }
             if(anotherCat.health <= 5 && anotherCat.health < this.health) {
-                System.out.println("Кот " + anotherCat.name + " не может продолжать бой");
-                System.out.println("Победил " + this.name);
+                System.out.println("Кот " + anotherCat.name + " не может продолжать бой. Его здоровье " + anotherCat.health);
+                System.out.println("Победил " + this.name + " остаток здоровья " + this.health);
             }
         }
         System.out.println(this);
