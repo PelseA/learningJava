@@ -71,7 +71,11 @@ public class Cat {
     }
 
     public void setColor(String color) {
-        this.color = color;
+        if (this.getTypeConstructor() == 1 || this.getTypeConstructor() == 4) {
+            System.out.println("Вы установили цвет при создании кота. Невозможно изменить этот параметр.");
+        }
+        else this.color = color;
+        if("black".equals(color)) this.strength++;
     }
 
     public void setOwnerAddress(Address ownerAddress) {
