@@ -1,7 +1,5 @@
 package strings;
 
-import java.util.Arrays;
-
 public class StringTask {
     public static void main(String[] args) {
         //Задача 1. Даны 2 слова, состоящие из четного числа букв. Получить слово состоящее из
@@ -11,8 +9,8 @@ public class StringTask {
         int length = word1.length();
         StringBuilder sb1 = new StringBuilder();
         StringBuilder sb2 = new StringBuilder();
-        word2 = sb2.append(word2).delete(0, length/2).toString();
-        word1 = sb1.append(word1).delete(length/2, length).append(word2).toString();
+        word2 = sb2.append(word2).delete(0, length / 2).toString();
+        word1 = sb1.append(word1).delete(length / 2, length).append(word2).toString();
         System.out.println(word1); //cucuhead
         //Задача 2. Найдите самое длинное слово в предложении, при условии,
         //что в предложении все слова разной длины.
@@ -20,7 +18,7 @@ public class StringTask {
         String[] strings = sentence.split("\\s|,\\s|\\.");
         int longest = 1;
         String longestWord = "";
-        for (String word: strings) {
+        for (String word : strings) {
             if (word.length() > longest) {
                 longest = word.length();
                 longestWord = word;
@@ -32,11 +30,11 @@ public class StringTask {
         String str2 = "ra";
         int entries = 0;
         String[] parts = str1.split("ra");
-        if(parts.length > 0) entries = parts.length - 1;
+        if (parts.length > 0) entries = parts.length - 1;
         //если вхождение в конце строки оно не будет в массиве после split поэтому делаю следующее
         StringBuilder sb = new StringBuilder();
-        String endOfWord = sb.append(str1).delete(0, str1.length()-str2.length()).toString();
-        if(endOfWord.equals(str2)) entries++;
+        String endOfWord = sb.append(str1).delete(0, str1.length() - str2.length()).toString();
+        if (endOfWord.equals(str2)) entries++;
         System.out.println(entries);
 
         //Задача 4. Написать функцию, которая проверяет, является ли строка палиндромом.
@@ -50,7 +48,43 @@ public class StringTask {
         // ["hot", "dot", "dog", "log", "lot"]. Один из вариантов цепочки: "hit"->"hot"->"dot"->"dog"->"cog".
         //6. Пользователь вводит названия городов через пробел. Вы их присваиваете переменной.
         // Переставьте названия так, чтобы они были упорядочены по алфавиту.
+        String cities = "Донецк Саратов Анапа Белгород Анадырь";
+        String sorted = sortAbc(cities);
+        System.out.println("result " + sorted);
     }
+
+    private static String sortAbc(String str) {
+        String[] strABC = str.split("\\s");
+        int minLength;
+        String temp;
+        int flag = 0;
+        int j;
+        for (int i = 0; i < strABC.length - 1; i++) {
+            minLength = Math.min(strABC[i].length(), strABC[i+1].length());
+            j = 0;
+            while(strABC[i].charAt(j) == strABC[i+1].charAt(j) && j < minLength) {
+                j++;
+            }
+            //TODO доделать проверку на сравнение "Анапа" и "Ана"
+            if (strABC[i].charAt(j) > strABC[i+1].charAt(j)) {
+                temp = strABC[i+1];
+                strABC[i+1] = strABC[i];
+                strABC[i] = temp;
+                flag++;
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        int k = 0;
+        while (k < strABC.length) {
+            stringBuilder.append(strABC[k]).append(" ");
+            k++;
+        }
+        String sortedStr = stringBuilder.toString();
+        if (flag == 0) {
+            return sortedStr;
+        } else return sortAbc(sortedStr);
+    }
+
     private static boolean isPalindrome(String str) {
         int length = str.length();
         str = str.toLowerCase();
@@ -59,10 +93,11 @@ public class StringTask {
         for (int i = 0; i < length; i++) {
             forCompare = str.charAt(i) + forCompare;
             forCompare = sb.append(forCompare).toString();
-            System.out.println(forCompare);
             sb.setLength(0);
         }
+        System.out.println(forCompare);
         return str.equals(forCompare);
     }
+
 
 }
