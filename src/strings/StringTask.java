@@ -1,17 +1,15 @@
 package strings;
 
+import java.util.Arrays;
+
 public class StringTask {
     public static void main(String[] args) {
         //Задача 1. Даны 2 слова, состоящие из четного числа букв. Получить слово состоящее из
         //первой половины первого слова и второй половины второго слова.
-        String word1 = "cucumber";
-        String word2 = "forehead";
-        int length = word1.length();
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        word2 = sb2.append(word2).delete(0, length / 2).toString();
-        word1 = sb1.append(word1).delete(length / 2, length).append(word2).toString();
-        System.out.println(word1); //cucuhead
+        String word1 = "cucumbers";
+        String word2 = "foreheads";
+        word1 = word1.substring(0, word1.length()/2) + word2.substring(word2.length()/2);
+        System.out.println(word1); //cucuheads
         //Задача 2. Найдите самое длинное слово в предложении, при условии,
         //что в предложении все слова разной длины.
         String sentence = "С печальной Таней наш приятель.";
@@ -39,7 +37,7 @@ public class StringTask {
 
         //Задача 4. Написать функцию, которая проверяет, является ли строка палиндромом.
         //Палиндром читается в обе стороны одинаково.
-        String stroka = "Venice";
+        String stroka = "А по морде ведром?- опа!";
         System.out.println(isPalindrome(stroka));
 
         //5. Даны два слова и словарь (массив слов). Необходимо найти алгоритм превращения
@@ -48,7 +46,7 @@ public class StringTask {
         // ["hot", "dot", "dog", "log", "lot"]. Один из вариантов цепочки: "hit"->"hot"->"dot"->"dog"->"cog".
         //6. Пользователь вводит названия городов через пробел. Вы их присваиваете переменной.
         // Переставьте названия так, чтобы они были упорядочены по алфавиту.
-        String cities = "Донецк Саратов Анапа Белгород Анадырь";
+        String cities = "Донецк Саратов Сарапул Анапа Ана Белгород Сар Анадырь";
         String sorted = sortAbc(cities);
         System.out.println("result " + sorted);
     }
@@ -62,11 +60,22 @@ public class StringTask {
         for (int i = 0; i < strABC.length - 1; i++) {
             minLength = Math.min(strABC[i].length(), strABC[i+1].length());
             j = 0;
-            while(strABC[i].charAt(j) == strABC[i+1].charAt(j) && j < minLength) {
+            while(j < minLength && strABC[i].charAt(j) == strABC[i+1].charAt(j)) {
                 j++;
             }
-            //TODO доделать проверку на сравнение "Анапа" и "Ана"
-            if (strABC[i].charAt(j) > strABC[i+1].charAt(j)) {
+//            System.out.println(strABC[i]);
+//            System.out.println(strABC[i+1]);
+//            System.out.println("j " + j);
+            if(strABC[i].length() == minLength) {
+                continue;
+            }
+            if(strABC[i+1].length() == minLength && strABC[i].length() > minLength) {
+                temp = strABC[i+1];
+                strABC[i+1] = strABC[i];
+                strABC[i] = temp;
+                flag++;
+            }
+            else if (strABC[i].charAt(j) > strABC[i+1].charAt(j)) {
                 temp = strABC[i+1];
                 strABC[i+1] = strABC[i];
                 strABC[i] = temp;
@@ -86,11 +95,15 @@ public class StringTask {
     }
 
     private static boolean isPalindrome(String str) {
-        int length = str.length();
-        str = str.toLowerCase();
+        str = str.replaceAll(" ", "")
+                .replaceAll(",", "")
+                .replaceAll("-", "")
+                .replaceAll("!", "")
+                .replaceAll("\\?", "")
+                .toLowerCase();
         String forCompare = "";
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < str.length(); i++) {
             forCompare = str.charAt(i) + forCompare;
             forCompare = sb.append(forCompare).toString();
             sb.setLength(0);
