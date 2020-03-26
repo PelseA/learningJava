@@ -29,9 +29,9 @@ public class Farm {
 
     public void passDay() {
         // 1 Фермер тратит 2 единицы ресурсов (если ресурсов не осталось, игра заканчивается).
-        farmer.useResource();
+        farmer.useSelfResource();
         if(farmer.resource <= 0) {
-            System.out.println("игра заканчивается");
+            System.out.println("Игра закончилась. Фермер исчерпал свои ресурсы");
             return;
         }
         // 2 Приходит дикое животное (выбирается рандомно из массива с дикими животными), пытается поймать
@@ -47,11 +47,32 @@ public class Farm {
 
         // 4 Фермер кормит всех животных (животные восполняют здоровье)
         for (HomeAnimal an: homeAnimals) {
-            farmer.feedAnimal(an);
+            if(an.isOnFarm()) farmer.feedAnimal(an);
         }
 
         // 5 Фермер собирает ресурсы с животных, с которых можно их собирать.
         // Если таких не осталось, съедает животное, пригодное в пищу (если такие остались).
+        for(HomeAnimal resAn: homeAnimals) {
+            int resBefore = farmer.resource;
+            if (resAn instanceof GivesResources) {
+                if(resAn.isOnFarm()) {
+                    farmer.takeResources((GivesResources) resAn);
+                }
+            }
+            if (resBefore == farmer.resource) {
+                for(HomeAnimal eatenAn: homeAnimals) {
+                    if (eatenAn instanceof CanBeEaten) {
+                        if(resAn.isOnFarm()) {
+                            farmer.eatAnimal((CanBeEaten) eatenAn);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 
     }
 }

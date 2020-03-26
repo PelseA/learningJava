@@ -20,4 +20,14 @@ public class WildAnimal extends Animal {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "WildAnimal{" +
+                "strength=" + strength +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", speed=" + speed +
+                '}';
+    }
 }

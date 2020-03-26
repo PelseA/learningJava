@@ -25,11 +25,12 @@ public class Farmer {
     }
 
     public void takeResources(GivesResources animal) {
-
+        resource += animal.giveResource();
     }
 
     public void eatAnimal(CanBeEaten animal) {
-
+        animal.wasEaten();
+        System.out.println("Фермер съел " + animal.toString());
     }
 
     public boolean kickAnimal(WildAnimal animal) {
@@ -40,7 +41,7 @@ public class Farmer {
         animal.health += 3;
     }
 
-    public void useResource() {
+    public void useSelfResource() {
         resource -= 1;
     }
 }
