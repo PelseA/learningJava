@@ -3,6 +3,10 @@ package ru.pelse.syntax.farm;
 public class Cow extends HomeAnimal implements CanBeEaten, GivesResources {
     protected int resourcesAtATime = 3; //дает ресурсов за один раз
 
+    public Cow(int speed, int health, int resource) {
+        super(speed, health, resource);
+    }
+
     public int getResourcesAtATime() {
         return resourcesAtATime;
     }

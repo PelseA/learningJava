@@ -3,7 +3,13 @@ package ru.pelse.syntax.farm;
 public class HomeAnimal extends Animal{
     protected int health;
     protected boolean onFarm;
-    protected int resource = 0;
+    protected int resource;
+
+    public HomeAnimal(int speed, int health, int resource) {
+        super(speed);
+        this.setHealth(health);
+        this.setResource(resource);
+    }
 
     public int getResource() {
         return resource;

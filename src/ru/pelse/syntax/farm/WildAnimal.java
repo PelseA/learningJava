@@ -3,6 +3,11 @@ package ru.pelse.syntax.farm;
 public class WildAnimal extends Animal {
     protected int strength;
 
+    public WildAnimal(int speed, int strength) {
+        super(speed);
+        this.setStrength(strength);
+    }
+
     public int getStrength() {
         return strength;
     }
@@ -13,8 +18,8 @@ public class WildAnimal extends Animal {
 
     public void attack(HomeAnimal animal) {
         if(speed > animal.speed) {
-            System.out.println(this.getName() + " напало на " + animal.getName());
-            animal.health -= 5;
+            System.out.println(this.getName() + " напал(-а) на домашнее животное " + animal.getName());
+            animal.health -= strength;
             if(animal.health <= 0) {
                 animal.setOnFarm(false);
             }

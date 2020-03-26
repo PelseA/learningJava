@@ -2,6 +2,7 @@ package ru.pelse.syntax.farm;
 
 import java.util.Date;
 import java.util.Random;
+import java.util.function.DoubleToIntFunction;
 
 public class Farmer {
     String name = "Фермер";
@@ -26,11 +27,12 @@ public class Farmer {
 
     public void takeResources(GivesResources animal) {
         resource += animal.giveResource();
+        System.out.println(this.getName() + " собрал ресурсы");
     }
 
     public void eatAnimal(CanBeEaten animal) {
         animal.wasEaten();
-        System.out.println("Фермер съел " + animal.toString());
+        System.out.println(this.getName() + " съел " + animal.toString());
     }
 
     public boolean kickAnimal(WildAnimal animal) {
@@ -39,6 +41,7 @@ public class Farmer {
 
     public void feedAnimal(HomeAnimal animal) {
         animal.health += 3;
+        System.out.println(this.getName() + " покормил животное по имени " + animal.getName());
     }
 
     public void useSelfResource() {

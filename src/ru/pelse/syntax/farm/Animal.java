@@ -5,6 +5,10 @@ abstract public class Animal {
     protected int weight;
     protected int speed;
 
+    public Animal(int speed) {
+        this.speed = speed;
+    }
+
     public String getName() {
         return name;
     }
