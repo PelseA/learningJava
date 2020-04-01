@@ -40,7 +40,7 @@ public class Farmer {
     }
 
     public void feedAnimal(HomeAnimal animal) {
-        animal.health += 3;
+        animal.addHealth();
         System.out.println(this.getName() + " покормил животное по имени " + animal.getName());
     }
 

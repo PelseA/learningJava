@@ -2,6 +2,7 @@ package ru.pelse.syntax.farm;
 
 public class HomeAnimal extends Animal{
     protected int health;
+    protected int primaryHealth;
     protected boolean onFarm;
     protected int resource;
 
@@ -9,6 +10,7 @@ public class HomeAnimal extends Animal{
         super(speed);
         this.setHealth(health);
         this.setResource(resource);
+        this.primaryHealth = health;
     }
 
     public int getResource() {
@@ -32,7 +34,18 @@ public class HomeAnimal extends Animal{
     }
 
     public void setHealth(int health) {
+
         this.health = health;
+    }
+
+    public int getPrimaryHealth() {
+        return primaryHealth;
+    }
+
+    public void addHealth() {
+        if(this.health < getPrimaryHealth()) {
+            this.health += 1;
+        }
     }
 
     @Override
