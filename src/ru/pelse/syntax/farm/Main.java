@@ -41,9 +41,11 @@ public class Main {
         Fox fox = new Fox(random.nextInt(maxSpeed-minSpeed+1)+minSpeed,
                 random.nextInt(maxStrength-minStrength+1)+minStrength);
         fox.setName("Лиса");
+        fox.setCountAttack(3);
         Bear bear = new Bear(random.nextInt(maxSpeed-minSpeed+1)+minSpeed,
                 random.nextInt(maxStrength-minStrength+1)+minStrength);
         bear.setName("Медведь");
+        bear.setCountAttack(2);
         Wolf wolf = new Wolf(random.nextInt(maxSpeed-minSpeed+1)+minSpeed,
                 random.nextInt(maxStrength-minStrength+1)+minStrength);
         wolf.setName("Волк");
