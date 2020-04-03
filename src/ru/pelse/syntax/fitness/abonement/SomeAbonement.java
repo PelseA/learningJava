@@ -1,8 +1,7 @@
 package ru.pelse.syntax.fitness.abonement;
 
 import ru.pelse.syntax.fitness.member.FitnessMember;
-import ru.pelse.syntax.fitness.zone.Gym;
-import ru.pelse.syntax.fitness.zone.Zone;
+import ru.pelse.syntax.fitness.zone.ZoneType;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,8 +12,7 @@ abstract public class SomeAbonement implements Abonement {
     protected LocalDate registrationExpiration;
     protected int durationInMonths;
     //тренажерный зал можно посещать всем
-    public Gym gym = new Gym();
-    protected String[] zones = new String[3];
+    protected ZoneType[] zones = new ZoneType[3];
     //индекс 0 - начало, индекс 1 - окончание
     protected LocalTime[] time = new LocalTime[2];
     protected boolean currentlyRegisterInZone = false;
@@ -22,7 +20,7 @@ abstract public class SomeAbonement implements Abonement {
     public SomeAbonement(FitnessMember member) throws IllegalArgumentException{
         this.member = member;
         setRegistrationExpiration();
-        zones[0] = "gym";
+        zones[0] = ZoneType.GYM;
         time[0] = LocalTime.of(8, 0);
     }
 
@@ -49,12 +47,8 @@ abstract public class SomeAbonement implements Abonement {
         }
     }
 
-    public String[] getZones() {
+    public ZoneType[] getZones() {
         return zones;
-    }
-
-    public void setZones(String[] zones) {
-        this.zones = zones;
     }
 
     public LocalTime[] getTime() {

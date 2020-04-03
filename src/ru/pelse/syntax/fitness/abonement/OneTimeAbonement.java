@@ -1,19 +1,16 @@
 package ru.pelse.syntax.fitness.abonement;
 
 import ru.pelse.syntax.fitness.member.FitnessMember;
-import ru.pelse.syntax.fitness.zone.Pool;
-import ru.pelse.syntax.fitness.zone.Zone;
+import ru.pelse.syntax.fitness.zone.ZoneType;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class OneTimeAbonement extends SomeAbonement {
     // бассейн и тренажерный зал
-    //public Pool pool = new Pool();
-
     public OneTimeAbonement(FitnessMember user) {
         super(user);
-        zones[1] = "pool";
+        zones[1] = ZoneType.POOL;
         time[1] = LocalTime.of(22, 0);
     }
 
