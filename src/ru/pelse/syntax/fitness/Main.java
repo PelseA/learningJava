@@ -7,10 +7,10 @@ import ru.pelse.syntax.fitness.member.AdultMember;
 import ru.pelse.syntax.fitness.zone.Group;
 import ru.pelse.syntax.fitness.zone.Gym;
 import ru.pelse.syntax.fitness.zone.Pool;
+import ru.pelse.syntax.fitness.zone.ZoneType;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,9 +26,9 @@ public class Main {
                 LocalDate.of(1960, Month.NOVEMBER, 3));
         AdultMember visitor3 = new AdultMember("Лев", "Троцкий",
                 LocalDate.of(1981, Month.JULY, 11));
-        AdultMember visitor4 = new AdultMember("Иван", "Поляков",
+        AdultMember visitor4 = new AdultMember("Алена", "Савельева",
                 LocalDate.of(1992, Month.APRIL, 23));
-        AdultMember visitor5 = new AdultMember("Иван", "Поляков",
+        AdultMember visitor5 = new AdultMember("Денис", "Ушаков",
                 LocalDate.of(1975, Month.OCTOBER, 8));
 
         OneTimeAbonement oneTimeAbonement1 = new OneTimeAbonement(visitor1);
@@ -37,17 +37,14 @@ public class Main {
         FullAbonement fullAbonement2 = new FullAbonement(visitor4, 6);
         DailyAbonement dailyAbonement = new DailyAbonement(visitor5, 6);
 
-        fitness.addMember(oneTimeAbonement1, "pool");
-        System.out.println(Arrays.toString(pool.getAbonements()));
-        System.out.println(fullAbonement2.getZones()[2]);
-        fitness.addMember(oneTimeAbonement2, "gym");
-        fitness.addMember(fullAbonement1, "gym");
-        fitness.addMember(fullAbonement2, "pool");
-        fitness.addMember(dailyAbonement, "pool");
+        fitness.addMember(oneTimeAbonement1, ZoneType.POOL);
+        fitness.addMember(oneTimeAbonement2, ZoneType.GYM);
+        fitness.addMember(fullAbonement1, ZoneType.GYM);
+        fitness.addMember(fullAbonement2, ZoneType.POOL);
+        fitness.addMember(dailyAbonement, ZoneType.POOL);
 
         // проверка на повторное (одновременное) посещение спортивной зоны
-        // TODO не удалась
-        fitness.addMember(fullAbonement2, "pool");
+        fitness.addMember(fullAbonement2, ZoneType.POOL);
 
         fitness.showVisitors();
 

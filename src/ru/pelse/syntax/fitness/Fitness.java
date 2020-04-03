@@ -1,10 +1,7 @@
 package ru.pelse.syntax.fitness;
 
 import ru.pelse.syntax.fitness.abonement.SomeAbonement;
-import ru.pelse.syntax.fitness.zone.Group;
-import ru.pelse.syntax.fitness.zone.Gym;
-import ru.pelse.syntax.fitness.zone.Pool;
-import ru.pelse.syntax.fitness.zone.Zone;
+import ru.pelse.syntax.fitness.zone.*;
 
 import java.time.LocalTime;
 
@@ -26,11 +23,11 @@ public class Fitness {
     }
 
     // себе: абонемент хранит инфо о member
-    // desiredZone must be "pool" || "gym" || "group"
-    public void addMember(SomeAbonement abonement, String desiredZone) {
+    // desiredZone must be ZoneType.POOL || ZoneType.GYM || ZoneType.GROUP
+    public void addMember(SomeAbonement abonement, ZoneType desiredZone) {
         //LocalTime currentTime = LocalTime.now();
         LocalTime currentTime = LocalTime.of(8, 0);
-        String[] zones = abonement.getZones();
+        ZoneType[] zones = abonement.getZones();
         if (!currentTime.isAfter(abonement.getTime()[0]) && !abonement.getTime()[1].isBefore(currentTime)) {
             if (currentTime.equals(abonement.getTime()[0])) {
                 checkZone(abonement, desiredZone, zones);
@@ -42,20 +39,20 @@ public class Fitness {
         }
     }
 
-    private void checkZone(SomeAbonement abonement, String desiredZone, String[] zones) {
+    private void checkZone(SomeAbonement abonement, ZoneType desiredZone, ZoneType[] zones) {
         Zone potentialZone = null;
         boolean zoneExist = false;
-        for (String zone: zones) {
+        for (ZoneType zone: zones) {
             if (zone != null) {
                 if(zone.equals(desiredZone)) {
                     zoneExist = true;
-                    if(pool.getTitle().equals(zone)) {
+                    if(ZoneType.POOL.equals(zone)) {
                         potentialZone = pool;
                     }
-                    if(gym.getTitle().equals(zone)) {
+                    if(ZoneType.GYM.equals(zone)) {
                         potentialZone = gym;
                     }
-                    if(group.getTitle().equals(zone)) {
+                    if(ZoneType.GROUP.equals(zone)) {
                         potentialZone = group;
                     }
                 }
@@ -69,7 +66,6 @@ public class Fitness {
                 Logger.showVisitorInfo(abonement, potentialZone);
             }
         }
-        zoneExist = false;
     }
 
     public void showVisitors() {
