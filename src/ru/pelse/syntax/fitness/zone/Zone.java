@@ -5,7 +5,7 @@ import ru.pelse.syntax.fitness.abonement.SomeAbonement;
 import java.util.Arrays;
 
 abstract public class Zone {
-    protected String title;
+    protected ZoneType title;
     protected SomeAbonement[] abonements;
 
     public Zone() {
@@ -20,24 +20,23 @@ abstract public class Zone {
         this.abonements = abonements;
     }
 
-    public String getTitle() {
+    public ZoneType getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(ZoneType title) {
         this.title = title;
     }
 
     public boolean addAbonement(SomeAbonement newAbonement) {
         for (int i = 0; i < abonements.length; i++) {
             if(abonements[i] == newAbonement) {
-                System.out.println("Повторная регистрация для "
+                System.out.println("Повторная регистрация для посетителя "
                         + abonements[i].getMember().getSurname() + " "
                         + abonements[i].getMember().getName() + " невозможна" );
                 return false;
             } else if( abonements[i] == null) {
                 abonements[i] = newAbonement;
-                System.out.println("Из addAbonemet "+ Arrays.toString(abonements));
                 newAbonement.setCurrentlyRegisterInZone(true);
                 return true;
             }
@@ -46,9 +45,9 @@ abstract public class Zone {
     }
 
     public void closeZone() {
-        for (SomeAbonement ab: abonements) {
-            ab.setCurrentlyRegisterInZone(false);
-            ab = null;
+        for(int i = 0; i < abonements.length; i++) {
+            abonements[i].setCurrentlyRegisterInZone(false);
+            abonements[i] = null;
         }
     }
 }
