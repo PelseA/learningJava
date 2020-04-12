@@ -33,68 +33,76 @@ public class FieldGenerator {
 
     void fillSpaceAround(int direction, int startPosCell, int startPosRow, int countDecks) {
         if (direction == 1) {
-            if (startPosCell > 0) {
-                if (field[startPosRow][startPosCell - 1] == 0) field[startPosRow][startPosCell - 1] = 1;
-                if (startPosRow > 0) {
-                    if (field[startPosRow - 1][startPosCell - 1] == 0) field[startPosRow - 1][startPosCell - 1] = 1;
-                }
-                if (startPosRow < field.length - 1) {
-                    if (field[startPosRow + 1][startPosCell - 1] == 0) field[startPosRow + 1][startPosCell - 1] = 1;
-                }
-            }
-            if (startPosRow > 0) {
-                for (int i = startPosCell; i < startPosCell + countDecks; i++) {
-                    if (field[startPosRow - 1][i] == 0) field[startPosRow - 1][i] = 1;
-                }
-            }
-            if (startPosRow < field.length - 1) {
-                for (int i = startPosCell; i < startPosCell + countDecks; i++) {
-                    if (field[startPosRow + 1][i] == 0) field[startPosRow + 1][i] = 1;
-                }
-            }
-            if (startPosCell < field.length - countDecks) {
-                if (field[startPosRow][startPosCell + countDecks] == 0)
-                    field[startPosRow][startPosCell + countDecks] = 1;
-                if (startPosRow > 0) {
-                    if (field[startPosRow - 1][startPosCell + countDecks] == 0)
-                        field[startPosRow - 1][startPosCell + countDecks] = 1;
-                }
-                if (startPosRow < field.length - 1) {
-                    if (field[startPosRow + 1][startPosCell + countDecks] == 0)
-                        field[startPosRow + 1][startPosCell + countDecks] = 1;
-                }
-            }
+            aroundHorizontalShip(startPosRow, startPosCell, countDecks);
         } else {
-            if (startPosRow > 0) {
-                if (field[startPosRow - 1][startPosCell] == 0) field[startPosRow - 1][startPosCell] = 1;
-                if (startPosCell > 0) {
-                    if (field[startPosRow - 1][startPosCell - 1] == 0) field[startPosRow - 1][startPosCell - 1] = 1;
-                }
-                if (startPosCell < field.length - 1) {
-                    if (field[startPosRow - 1][startPosCell + 1] == 0) field[startPosRow - 1][startPosCell + 1] = 1;
-                }
-            }
+            aroundVerticalShip(startPosRow, startPosCell, countDecks);
+        }
+    }
+
+    private void aroundVerticalShip(int startPosRow, int startPosCell, int countDecks) {
+        if (startPosRow > 0) {
+            if (field[startPosRow - 1][startPosCell] == 0) field[startPosRow - 1][startPosCell] = 1;
             if (startPosCell > 0) {
-                for (int j = startPosRow; j < startPosRow + countDecks; j++) {
-                    if (field[j][startPosCell - 1] == 0) field[j][startPosCell - 1] = 1;
-                }
+                if (field[startPosRow - 1][startPosCell - 1] == 0) field[startPosRow - 1][startPosCell - 1] = 1;
             }
             if (startPosCell < field.length - 1) {
-                for (int j = startPosRow; j < startPosRow + countDecks; j++) {
-                    if (field[j][startPosCell + 1] == 0) field[j][startPosCell + 1] = 1;
-                }
+                if (field[startPosRow - 1][startPosCell + 1] == 0) field[startPosRow - 1][startPosCell + 1] = 1;
             }
-            if (startPosRow < field.length - countDecks) {
-                if (field[startPosRow + countDecks][startPosCell] == 0)
-                    field[startPosRow + countDecks][startPosCell] = 1;
-                if (startPosCell > 0) {
-                    if (field[startPosRow + countDecks][startPosCell - 1] == 0)
-                        field[startPosRow + countDecks][startPosCell - 1] = 1;
-                }
-                if (startPosCell < field.length - 1) {
-                    if (field[startPosRow + countDecks][startPosCell + 1] == 0)
-                        field[startPosRow + countDecks][startPosCell + 1] = 1;
-                }
+        }
+        if (startPosCell > 0) {
+            for (int j = startPosRow; j < startPosRow + countDecks; j++) {
+                if (field[j][startPosCell - 1] == 0) field[j][startPosCell - 1] = 1;
+            }
+        }
+        if (startPosCell < field.length - 1) {
+            for (int j = startPosRow; j < startPosRow + countDecks; j++) {
+                if (field[j][startPosCell + 1] == 0) field[j][startPosCell + 1] = 1;
+            }
+        }
+        if (startPosRow < field.length - countDecks) {
+            if (field[startPosRow + countDecks][startPosCell] == 0)
+                field[startPosRow + countDecks][startPosCell] = 1;
+            if (startPosCell > 0) {
+                if (field[startPosRow + countDecks][startPosCell - 1] == 0)
+                    field[startPosRow + countDecks][startPosCell - 1] = 1;
+            }
+            if (startPosCell < field.length - 1) {
+                if (field[startPosRow + countDecks][startPosCell + 1] == 0)
+                    field[startPosRow + countDecks][startPosCell + 1] = 1;
+            }
+        }
+    }
+
+    private void aroundHorizontalShip(int startPosRow, int startPosCell, int countDecks) {
+        if (startPosCell > 0) {
+            if (field[startPosRow][startPosCell - 1] == 0) field[startPosRow][startPosCell - 1] = 1;
+            if (startPosRow > 0) {
+                if (field[startPosRow - 1][startPosCell - 1] == 0) field[startPosRow - 1][startPosCell - 1] = 1;
+            }
+            if (startPosRow < field.length - 1) {
+                if (field[startPosRow + 1][startPosCell - 1] == 0) field[startPosRow + 1][startPosCell - 1] = 1;
+            }
+        }
+        if (startPosRow > 0) {
+            for (int i = startPosCell; i < startPosCell + countDecks; i++) {
+                if (field[startPosRow - 1][i] == 0) field[startPosRow - 1][i] = 1;
+            }
+        }
+        if (startPosRow < field.length - 1) {
+            for (int i = startPosCell; i < startPosCell + countDecks; i++) {
+                if (field[startPosRow + 1][i] == 0) field[startPosRow + 1][i] = 1;
+            }
+        }
+        if (startPosCell < field.length - countDecks) {
+            if (field[startPosRow][startPosCell + countDecks] == 0)
+                field[startPosRow][startPosCell + countDecks] = 1;
+            if (startPosRow > 0) {
+                if (field[startPosRow - 1][startPosCell + countDecks] == 0)
+                    field[startPosRow - 1][startPosCell + countDecks] = 1;
+            }
+            if (startPosRow < field.length - 1) {
+                if (field[startPosRow + 1][startPosCell + countDecks] == 0)
+                    field[startPosRow + 1][startPosCell + countDecks] = 1;
             }
         }
     }
@@ -127,7 +135,6 @@ public class FieldGenerator {
                     field[i][startPosCell] = 5;
                     success++;
                 }
-
             }
         } else {
             for (int i = startPosCell; i < countOfDecks + startPosCell; i++) {
