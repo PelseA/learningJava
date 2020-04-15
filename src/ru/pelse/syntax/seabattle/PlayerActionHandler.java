@@ -1,5 +1,7 @@
 package ru.pelse.syntax.seabattle;
 
+import ru.pelse.syntax.enumtask.employee.Position;
+
 import java.util.Scanner;
 
 public class PlayerActionHandler {
@@ -21,6 +23,7 @@ public class PlayerActionHandler {
         String attack = sc.nextLine().trim().replaceAll(" ", "");
         char letter = attack.charAt(0);
         int row = getNumberByChar(letter);
+
         if(row > field.length || row == -1) {
             throw new IllegalArgumentException("The letter must be in range from a to " + field.length);
         }
@@ -71,24 +74,31 @@ public class PlayerActionHandler {
         int number = (int) (Math.random() * fieldSize + 1) - 1;
         String strNumber = Integer.toString(number);
         int letterInt = (int) (Math.random() * fieldSize);
-        return Character.toString(getCharByNumber(letterInt)).concat(strNumber);
+        return getLetterByNumber(letterInt).concat(strNumber);
     }
 
     protected int getNumberByChar(char letter) {
+//        for (Abc item : Abc.values()) {
+//            if (item.getLetter() == letter) {
+//                return item.getNumber();
+//            }
+//        }
         for (Abc item : Abc.values()) {
-            if (item.getLetter() == letter) {
+            String litera = item.name().toLowerCase();
+            System.out.println(litera);
+            if (litera.equals(Character.toString(letter))) {
                 return item.getNumber();
             }
         }
         return -1;
     }
 
-    protected char getCharByNumber(int number) {
+    protected String getLetterByNumber(int number) {
         for (Abc item : Abc.values()) {
             if (item.getNumber() == number) {
-                return item.getLetter();
+                return item.name().toLowerCase();
             }
         }
-        return 0;
+        return null;
     }
 }
