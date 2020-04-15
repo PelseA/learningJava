@@ -31,7 +31,7 @@ public class EmployeeListHandler {
             return;
         }
         System.out.println("Enter the first letter of the position");
-        String position = sc.nextLine().trim().toLowerCase();
+        String position = sc.nextLine().trim().toUpperCase();
 
         User employee = new User(fullName, findPosition(position));
         addUserToList(employee);
@@ -51,7 +51,9 @@ public class EmployeeListHandler {
 
     protected Position findPosition(String firstLetter) {
         for (Position pos : Position.values()) {
-            if (pos.getFirstLetter().equals(firstLetter)) {
+            String position = pos.name();
+            char first = position.charAt(0);
+            if (firstLetter.equals(Character.toString(first))) {
                 return pos;
             }
         }
