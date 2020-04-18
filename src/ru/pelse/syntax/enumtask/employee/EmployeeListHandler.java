@@ -1,22 +1,20 @@
 package ru.pelse.syntax.enumtask.employee;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class EmployeeListHandler {
-    private Map<Position, User[]> employees;
+    private EnumMap<Position, User[]> employees;
     private Scanner sc;
 
     //listSize - количество мест для каждой должности (одинаково для всех)
     public EmployeeListHandler(int listSize) {
-        Map<Position, User[]> employees = new HashMap<>();
+        EnumMap<Position, User[]> employees = new EnumMap<>(Position.class);
+        System.out.println(employees);
         this.employees = prepareListEmployees(listSize, employees);
         this.sc = new Scanner(System.in);
     }
 
-    private Map<Position, User[]> prepareListEmployees(int listSize, Map<Position, User[]> employees) {
+    private EnumMap<Position, User[]> prepareListEmployees(int listSize, EnumMap<Position, User[]> employees) {
         for (Position pos : Position.values()) {
             employees.put(pos, new User[listSize]);
         }
