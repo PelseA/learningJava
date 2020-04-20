@@ -1,16 +1,48 @@
 package ru.pelse.syntax.hw;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class MessageTask {
     public static void countEachPriority(List<Message> messageList) {
-        // TODO:  Подсчитать количество сообщений для каждого приоритела
-        //  Ответ в консоль
+        // Подсчитать количество сообщений для каждого приоритета
+        int countHigh = 0;
+        int countUrgent = 0;
+        int countMedium = 0;
+        int countLow = 0;
+        for (Message message: messageList) {
+            if (message.getPriority().equals(MessagePriority.URGENT)) countUrgent++;
+            if (message.getPriority().equals(MessagePriority.HIGH)) countHigh++;
+            if (message.getPriority().equals(MessagePriority.MEDIUM)) countMedium++;
+            if (message.getPriority().equals(MessagePriority.LOW)) countLow++;
+        }
+
+        System.out.println("count message Urgent: " + countUrgent + "\n"
+                            + "count message High: " + countHigh + "\n"
+                            + "count message Medium: " + countMedium + "\n"
+                            + "count message Low: " + countLow + "\n");
+
     }
 
     public static void countEachCode(List<Message> messageList) {
-        // TODO: Подсчитать количество сообщений для каждого кода сообщения
-        //  Ответ в консоль
+        //Подсчитать количество сообщений для каждого кода сообщения
+        //поместим уникальные коды в сет
+        HashSet<Integer> codes = new HashSet<>();
+        //для Integer сразу получим упорядоченный по возрастанию
+        for (Message message: messageList) {
+            codes.add(message.getCode());
+        }
+        int count;
+        for (Integer code: codes) {
+            count = 0;
+            for (Message message: messageList) {
+                if(code == message.getCode()) {
+                    count++;
+                }
+            }
+            System.out.println("for code " + code + " count of messages = " + count);
+        }
+
     }
 
     private static void uniqueMessageCount(List<Message> messageList) {
@@ -38,5 +70,9 @@ public class MessageTask {
 
     public static void main(String[] args) {
         // вызов методов
+        List<Message> messages = MessageGenerator.generate(24);
+        System.out.println(messages);
+        MessageTask.countEachPriority(messages);
+        MessageTask.countEachCode(messages);
     }
 }

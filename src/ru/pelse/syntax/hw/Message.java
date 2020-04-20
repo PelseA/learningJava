@@ -67,12 +67,13 @@ public class Message {
         return "Message{" +
                 "code=" + code +
                 ", priority=" + priority +
-                '}';
+                '}'+ "\n";
     }
 
     public static void main(String[] args) {
         List<Message> messages = MessageGenerator.generate(34);
         System.out.println(messages);
+
     }
 }
 
