@@ -7,6 +7,7 @@ package ru.pelse.syntax.hw;
 // имени, зарплате, возрасту и компании
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Employee {
@@ -72,7 +73,24 @@ public class Employee {
                     21 + (int)Math.floor(Math.random() * 60)
             ));
         }
+        Comparator<Employee> employeeComparator = new EmployeeNameComparator()
+                .thenComparing(new EmployeeSalaryComparator()
+                .thenComparing(new EmployeeAgeComparator()
+                .thenComparing(new EmployeeCompanyComparator())));
+        employees.sort(employeeComparator);
         return employees;
     }
+
+    /*public static List<Employee> generateSortedList(int num) {
+        Comparator<Employee> employeeComparator = new EmployeeNameComparator()
+                .thenComparing(new EmployeeSalaryComparator()
+                        .thenComparing(new EmployeeAgeComparator()
+                                .thenComparing(new EmployeeCompanyComparator())));
+        List<Employee> employees = employeeGenerator(num);
+        employees.sort(employeeComparator);
+        return employees;
+    }*/
+
+
 }
 
