@@ -1,7 +1,6 @@
 package ru.pelse.syntax.hw;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class MessageTask {
     public static void countEachPriority(List<Message> messageList) {
@@ -59,29 +58,52 @@ public class MessageTask {
     }
 
     public static List<Message> uniqueMessagesInOriginalOrder(List<Message> messageList){
-        // TODO: вернуть только неповторяющиеся сообщения и в том порядке,
+        // вернуть только неповторяющиеся сообщения и в том порядке,
         //  в котором они встретились в первоначальном списке
-        //  Например, было: [{URGENT, 4}, {HIGH, 9}, {LOW, 3}, {HIGH, 9}]
-        //  на выходе: [{URGENT, 4}, {HIGH, 9}, {LOW, 3}]
-        return messageList;
+        //для первоначального порядка используем LinkedHashSet (хранит элементы в порядке добавления)
+        LinkedHashSet<Message> messages = new LinkedHashSet<>(messageList);
+        return new ArrayList<>(messages);
     }
 
     public static void removeEach(List<Message> messageList, MessagePriority priority){
-        // TODO: удалить из коллекции каждое сообщение с заданным приоритетом
-        //  вывод в консоль до удаления и после удаления
+        // удалить из коллекции каждое сообщение с заданным приоритетом
+        // вывод в консоль до удаления и после удаления
+        System.out.println("Before remove by priority " + priority + ": \n" + messageList);
+        Iterator<Message> messageIterator = messageList.iterator();
+        //здесь не буду применять лямбду, так как мы ее еще не проходили
+        while(messageIterator.hasNext()) {
+            Message nextMes = messageIterator.next();
+            if (nextMes.getPriority().equals(priority)) {
+                messageIterator.remove();
+            }
+        }
+        System.out.println("After remove: \n" + messageList);
     }
 
     public static void removeOther(List<Message> messageList, MessagePriority priority){
-        // TODO: удалить из коллекции все сообщения, кроме тех, которые имеют заданный приоритет
+        // удалить из коллекции все сообщения, кроме тех, которые имеют заданный приоритет
         //  вывод в консоль до удаления и после удаления
+        System.out.println("Before remove messages except priority " + priority + ": \n" + messageList);
+        Iterator<Message> messageIterator = messageList.iterator();
+        //и здесь не буду применять лямбду, так как мы ее еще не проходили
+        while(messageIterator.hasNext()) {
+            Message nextMes = messageIterator.next();
+            if (!nextMes.getPriority().equals(priority)) {
+                messageIterator.remove();
+            }
+        }
+        System.out.println("After remove: \n" + messageList);
     }
 
     public static void main(String[] args) {
         // вызов методов
-        List<Message> messages = MessageGenerator.generate(24);
+        List<Message> messages = MessageGenerator.generate(14);
         System.out.println(messages);
         MessageTask.countEachPriority(messages);
         MessageTask.countEachCode(messages);
         MessageTask.uniqueMessageCount(messages);
+        System.out.println(MessageTask.uniqueMessagesInOriginalOrder(messages));
+        MessageTask.removeEach(messages, MessagePriority.HIGH);
+        MessageTask.removeOther(messages, MessagePriority.LOW);
     }
 }
