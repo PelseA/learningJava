@@ -14,14 +14,14 @@ class EmployeeNameComparator implements Comparator<Employee> {
 class EmployeeSalaryComparator implements Comparator<Employee> {
     @Override
     public int compare(Employee o1, Employee o2) {
-        return Integer.compare(o1.getSalary(), o2.getSalary());
+        return Integer.compare(o2.getSalary(), o1.getSalary());
     }
 }
 
 class EmployeeAgeComparator implements Comparator<Employee> {
     @Override
     public int compare(Employee o1, Employee o2) {
-        return Integer.compare(o1.getAge(), o2.getAge());
+        return Integer.compare(o2.getAge(), o1.getAge());
     }
 }
 

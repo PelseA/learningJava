@@ -91,6 +91,21 @@ public class Employee {
         return employees;
     }*/
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", company='" + company + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                '}' + "\n";
+    }
+
+    public static void main(String[] args) {
+        List<Employee> employees = employeeGenerator(7);
+        System.out.println(employees);
+    }
+
 
 }
 
