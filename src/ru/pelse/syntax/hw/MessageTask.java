@@ -46,8 +46,16 @@ public class MessageTask {
     }
 
     private static void uniqueMessageCount(List<Message> messageList) {
-        // TODO: Подсчитать количество уникальных сообщений
-        //  Ответ в консоль
+        // Подсчитать количество уникальных сообщений
+        HashSet<Message> unique = new HashSet<>();
+        int count = 0;
+        for (Message message: messageList) {
+            if(unique.add(message)) {
+                count++;
+            }
+        }
+        System.out.println("Unique messages = " + count);
+
     }
 
     public static List<Message> uniqueMessagesInOriginalOrder(List<Message> messageList){
@@ -74,5 +82,6 @@ public class MessageTask {
         System.out.println(messages);
         MessageTask.countEachPriority(messages);
         MessageTask.countEachCode(messages);
+        MessageTask.uniqueMessageCount(messages);
     }
 }
