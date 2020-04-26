@@ -22,34 +22,34 @@ public class Main {
         int res;
         int a = 75;
         int b = 0;
-        try {
-            res = a / b;
-        } catch (ArithmeticException e) {
-            res = 0;
-            try {
-                addExceptionToList(exceptionsList, e.toString());
-            } catch (ArrayStoreException ex) {
-                addExceptionToList(exceptionsList, ex);
-            }
-        }
+//        try {
+//            res = a / b;
+//        } catch (ArithmeticException e) {
+//            res = 0;
+//            try {
+//                addExceptionToList(exceptionsList, e.toString());
+//            } catch (ArrayStoreException ex) {
+//                addExceptionToList(exceptionsList, ex);
+//            }
+//        }
 
         Integer num;
-        try {
-            int num1 = num.intValue();
-        } catch (NullPointerException e) {
-            addExceptionToList(exceptionsList, e);
-            num = new Integer(10);
-        }
-
-        Object ch = new Character('*');
-        try
-        {
-            Byte bt = (Byte)ch;
-        }
-        catch(ClassCastException e)
-        {
-            addExceptionToList(exceptionsList, e);
-        }
+//        try {
+//            int num1 = num.intValue();
+//        } catch (NullPointerException e) {
+//            addExceptionToList(exceptionsList, e);
+//            num = new Integer(10);
+//        }
+//
+//        Object ch = new Character('*');
+//        try
+//        {
+//            Byte bt = (Byte)ch;
+//        }
+//        catch(ClassCastException e)
+//        {
+//            addExceptionToList(exceptionsList, e);
+//        }
 
         try
         {

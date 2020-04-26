@@ -1,4 +1,4 @@
-package ru.pelse.syntax.hw.car;
+package ru.pelse.syntax.collections.hw.car;
 
 import java.util.Objects;
 

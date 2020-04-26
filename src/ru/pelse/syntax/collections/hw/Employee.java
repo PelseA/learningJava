@@ -1,4 +1,4 @@
-package ru.pelse.syntax.hw;
+package ru.pelse.syntax.collections.hw;
 
 // Создать список объетов List<Employee> (использовать метод employeeGenerator)
 // и сортировать по:

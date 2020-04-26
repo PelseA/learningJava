@@ -2,8 +2,6 @@ package ru.pelse.syntax.fitness.member;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.util.Date;
 
 public class AdultMember extends FitnessMember implements Member {
     protected int minAge = 18;

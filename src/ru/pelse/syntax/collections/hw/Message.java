@@ -1,4 +1,4 @@
-package ru.pelse.syntax.hw;
+package ru.pelse.syntax.collections.hw;
 
 import java.util.ArrayList;
 import java.util.Collections;

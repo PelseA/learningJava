@@ -47,7 +47,7 @@ abstract public class SomeAbonement implements Abonement {
         }
     }
 
-    public ZoneType[] getZones() {
+    public ZoneType [] getZones() {
         return zones;
     }
 

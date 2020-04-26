@@ -1,7 +1,6 @@
 package ru.pelse.syntax.fitness.member;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 abstract public class FitnessMember implements Member{
     protected String name;
