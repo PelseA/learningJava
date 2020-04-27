@@ -25,21 +25,21 @@ public class MessageTask {
 
     public static void countEachCode(List<Message> messageList) {
         //Подсчитать количество сообщений для каждого кода сообщения
-        //поместим уникальные коды в сет
+        //Set хранит уникальные значения
         HashSet<Integer> codes = new HashSet<>();
         //для Integer сразу получим упорядоченный по возрастанию
         for (Message message: messageList) {
             codes.add(message.getCode());
         }
-        int count;
-        for (Integer code: codes) {
-            count = 0;
-            for (Message message: messageList) {
-                if(code == message.getCode()) {
-                    count++;
-                }
-            }
-            System.out.println("for code " + code + " count of messages = " + count);
+
+        ArrayList<Integer> codesList = new ArrayList<>(codes);
+        int[] counts = new int[codesList.size()];
+        for (Message message : messageList) {
+            counts[codesList.indexOf(message.getCode())]++;
+        }
+
+        for (int i = 0; i < codesList.size(); i++) {
+            System.out.println("for code " + codesList.get(i) + " count of messages = " + counts[i]);
         }
 
     }
@@ -92,6 +92,8 @@ public class MessageTask {
                 messageIterator.remove();
             }
         }
+
+        //todo смотреть retainAll
         System.out.println("After remove: \n" + messageList);
     }
 
