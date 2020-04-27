@@ -92,8 +92,19 @@ public class MessageTask {
                 messageIterator.remove();
             }
         }
+        System.out.println("After remove: \n" + messageList);
 
-        //todo смотреть retainAll
+    }
+
+    public static void removeOtherRetainAll(List<Message> messageList, MessagePriority priority) {
+        System.out.println("Before remove messages except priority " + priority + ": \n" + messageList);
+        ArrayList<Message> withPriority = new ArrayList<>();
+        for (Message message : messageList) {
+            if (message.getPriority() == priority) {
+                withPriority.add(message);
+            }
+        }
+        messageList.retainAll(withPriority);
         System.out.println("After remove: \n" + messageList);
     }
 
@@ -106,6 +117,24 @@ public class MessageTask {
         MessageTask.uniqueMessageCount(messages);
         System.out.println(MessageTask.uniqueMessagesInOriginalOrder(messages));
         MessageTask.removeEach(messages, MessagePriority.HIGH);
-        MessageTask.removeOther(messages, MessagePriority.LOW);
+
+        long startTime1 = System.nanoTime();
+        {
+            MessageTask.removeOther(messages, MessagePriority.LOW);
+        }
+        long time1 = System.nanoTime() - startTime1;
+        System.out.println("время выполнения: " + time1);
+
+        long startTime2 = System.nanoTime();
+        {
+            MessageTask.removeOtherRetainAll(messages, MessagePriority.LOW);
+        }
+        long time2 = System.nanoTime() - startTime2;
+        System.out.println("время выполнения c RetainAll: " + time2);
+        //сначала метод удаления (без RetainAll) removeOther работал быстрее чем removeOtherRetainAll
+        //после четвертого запуска removeOtherRetainAll стал работать быстрее чем removeOther
+
+
+
     }
 }
