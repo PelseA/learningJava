@@ -38,7 +38,7 @@ public class StringTask {
         //Задача 4. Написать функцию, которая проверяет, является ли строка палиндромом.
         //Палиндром читается в обе стороны одинаково.
         String stroka = "А по морде ведром?- опа!";
-        System.out.println(isPalindrome(stroka));
+        System.out.println("Строка '" + stroka + "' - это палиндром ? : " + isPalindrome(stroka));
 
         //5. Даны два слова и словарь (массив слов). Необходимо найти алгоритм превращения
         // в другое, меняя за один шаг одну букву, причем каждое новое слово должно быть в словаре
@@ -95,12 +95,7 @@ public class StringTask {
     }
 
     private static boolean isPalindrome(String str) {
-        str = str.replaceAll(" ", "")
-                .replaceAll(",", "")
-                .replaceAll("-", "")
-                .replaceAll("!", "")
-                .replaceAll("\\?", "")
-                .toLowerCase();
+        str = str.replaceAll("\\p{P}", "").replaceAll(" ", "").toLowerCase();
         String forCompare = "";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
