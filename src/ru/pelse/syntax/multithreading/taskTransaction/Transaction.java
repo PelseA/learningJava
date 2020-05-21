@@ -13,28 +13,24 @@ public class Transaction implements Runnable {
 
     @Override
     public void run() {
-
         // перевод средств в количестве (moneySum) с аккаунта (accountOutput)
         synchronized (accountOutput) {
-
             System.out.println(accountOutput.hashCode() + " Баланс accountOutput перед отправкой денег: "
                     + accountOutput.getBalance());
+
             if (accountOutput.getBalance() >= moneySum) {
                 accountOutput.setBalance(accountOutput.getBalance() - moneySum);
-                System.out.println(accountOutput.hashCode() + " Баланс accountOutput после отправки денег: " + accountOutput.getBalance());
-            } else {
-                System.out.println("Недостаточно средств. Баланс: " + accountOutput.getBalance());
-            }
-
-            synchronized (accountInput) {
-                System.out.println("current thread " + Thread.currentThread().getName());
-                System.out.println(accountInput.hashCode() + " Баланс accountInput до зачисления денег: " +
-                        accountInput.getBalance());
-                accountInput.setBalance(accountInput.getBalance() + moneySum);
-                System.out.println(accountInput.hashCode() + " Баланс accountInput после зачисления денег: " +
-                        accountInput.getBalance());
-
-            }
+                System.out.println(accountOutput.hashCode() + " Баланс accountOutput после отправки денег: " +
+                        accountOutput.getBalance());
+                synchronized (accountInput) {
+                    System.out.println("current thread " + Thread.currentThread().getName());
+                    System.out.println(accountInput.hashCode() + " Баланс accountInput до зачисления денег: " +
+                            accountInput.getBalance());
+                    accountInput.setBalance(accountInput.getBalance() + moneySum);
+                    System.out.println(accountInput.hashCode() + " Баланс accountInput после зачисления денег: " +
+                            accountInput.getBalance());
+                }
+            } else System.out.println("Недостаточно средств. Баланс: " + accountOutput.getBalance());
         }
     }
 }

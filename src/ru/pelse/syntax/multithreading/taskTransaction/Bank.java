@@ -7,7 +7,7 @@ public class Bank {
         Account account1 = new Account(17400);
         Account account2 = new Account(20000);
         Account account3 = new Account(68000);
-        Account account4 = new Account(9000);
+        Account account4 = new Account(900);
         Account account5 = new Account(93000);
 
         TransactionGenerator transactionGenerator = new TransactionGenerator();
