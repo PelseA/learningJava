@@ -36,6 +36,9 @@ class TransactionGenerator {
                 }
             }
         }
+
+        transactionThreads.removeIf(trThread -> trThread.getState().equals(Thread.State.TERMINATED));
+
     }
 }
 

@@ -1,5 +1,7 @@
 package ru.pelse.syntax.multithreading.taskTransaction;
 
+import java.util.Objects;
+
 public class Transaction implements Runnable {
     final private Account accountOutput; // с какого аккаунта осуществлять перевод
     final private Account accountInput; // на какой аккаунт осуществлять перевод
@@ -32,5 +34,20 @@ public class Transaction implements Runnable {
                 }
             } else System.out.println("Недостаточно средств. Баланс: " + accountOutput.getBalance());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transaction)) return false;
+        Transaction that = (Transaction) o;
+        return moneySum == that.moneySum &&
+                Objects.equals(accountOutput, that.accountOutput) &&
+                Objects.equals(accountInput, that.accountInput);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountOutput, accountInput, moneySum);
     }
 }
